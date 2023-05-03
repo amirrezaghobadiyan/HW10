@@ -1,20 +1,38 @@
-function createList() {
+function createTree(container, data) {
     const list = document.createElement('ul');
 
-    while (true) {
-        const item = prompt('Enter list item (or press "Esc" to cancel):');
+    for (let key in data) {
+        const item = document.createElement('li');
+        item.textContent = key;
 
-        if (item === null || item === '') {
-            // If the user cancels or enters an empty string, exit the loop
-            break;
+        if (typeof data[key] === 'object' && Object.keys(data[key]).length > 0) {
+            // If the value is an object with children, recursively create a nested list
+            const nestedList = createTree(document.createElement('div'), data[key]);
+            item.appendChild(nestedList);
         }
 
-        const listItem = document.createElement('li');
-        listItem.textContent = item;
-        list.appendChild(listItem);
+        list.appendChild(item);
     }
 
+    container.appendChild(list);
     return list;
 }
-const myList = createList();
-document.body.appendChild(myList);
+const container = document.getElementById('container');
+const data = {
+    "Fish": {
+        "trout": {},
+        "salmon": {}
+    },
+    "Tree": {
+        "Huge": {
+            "sequoia": {},
+            "oak": {}
+        },
+        "Flowering": {
+            "apple tree": {},
+            "magnolia": {}
+        }
+    }
+};
+createTree(container, data);
+
