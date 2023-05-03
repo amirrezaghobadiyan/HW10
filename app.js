@@ -1,24 +1,20 @@
-//1
-document.querySelector('#age-table');
+function createList() {
+    const list = document.createElement('ul');
 
-//2
-document.querySelectorAll('#age-table label');
+    while (true) {
+        const item = prompt('Enter list item (or press "Esc" to cancel):');
 
+        if (item === null || item === '') {
+            // If the user cancels or enters an empty string, exit the loop
+            break;
+        }
 
-//3
-document.querySelector('#age-table td:first-child');
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        list.appendChild(listItem);
+    }
 
-
-
-//4
-document.querySelector('form[name="search"]');
-
-
-
-//5
-document.querySelector('form[name="search"] input:first-of-type');
-
-
-
-//6
-document.querySelector('form[name="search"] input:last-of-type');
+    return list;
+}
+const myList = createList();
+document.body.appendChild(myList);
