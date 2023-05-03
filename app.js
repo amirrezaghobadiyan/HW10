@@ -1,7 +1,8 @@
-function openNav() {
-    document.getElementById("mySidenav").style.width = "100%";
-}
+const closeButtons = document.querySelectorAll('.close-button');
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+for (let i = 0; i < closeButtons.length; i++) {
+    const button = closeButtons[i];
+    button.addEventListener('click', () => {
+        button.parentNode.remove();
+    });
 }
